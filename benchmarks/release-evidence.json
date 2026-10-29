@@ -1,0 +1,10 @@
+{
+  "exact_vectors_passed": true,
+  "verified_platforms": ["macos-aarch64"],
+  "quality_groups": [],
+  "negative_queries": {"count": 0, "false_overlap_reports": null, "representative_held_out": false},
+  "pilot": {"bytes": 0, "representative_multimodal": false, "complete": false},
+  "worker_scaling": {"maximum": 0, "efficiency": 0},
+  "node_scaling": {"maximum": 0, "efficiency": 0},
+  "privacy_and_dependency_review_passed": false
+}

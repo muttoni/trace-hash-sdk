@@ -1,0 +1,35 @@
+name: Conformance
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, macos-15-intel, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: dtolnay/rust-toolchain@1.93.0
+        with:
+          components: clippy,rustfmt
+      - run: cargo fmt --all -- --check
+      - run: cargo test --locked
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements-lock.txt
+          VIRTUAL_ENV="$PWD/.venv" .venv/bin/maturin develop --release --locked --extras all,dev
+          .venv/bin/ruff check python tests scripts
+          .venv/bin/pytest -q
+          .venv/bin/python scripts/generate_schema.py
+          git diff --exit-code -- schemas python/trace_hash/manifest.schema.json
+      - run: .venv/bin/maturin build --release --locked --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.os }}
+          path: dist/*.whl

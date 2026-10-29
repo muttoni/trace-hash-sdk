@@ -1,0 +1,187 @@
+{
+  "measurements": [
+    {
+      "dataset_id": "7d26fb5c-a6c0-46af-8aa9-d41b255f289d",
+      "counts": {
+        "discovered": 44,
+        "processed": 42,
+        "logical_items": 45,
+        "partial": 2
+      },
+      "metrics": {
+        "input_bytes": 11689624,
+        "fingerprint_bytes": 909162,
+        "cpu_seconds": 0.8477189999999999,
+        "peak_worker_rss_bytes": 91160576,
+        "storage_requests": 0,
+        "retries": 0,
+        "media_seconds": 40.0,
+        "worker_cpu_seconds": 0.45818800000000004,
+        "parent_cpu_seconds": 0.3895309999999999,
+        "elapsed_seconds": 0.8698752500004048,
+        "input_gb_per_second": 0.013438276350539412,
+        "items_per_second": 50.58196563240479,
+        "media_hours_per_compute_hour": 47.1854470644164,
+        "estimated_cost_per_tb": null
+      },
+      "provenance": {
+        "sdk": "0.1.0",
+        "dependencies": {
+          "Pillow": "12.3.0",
+          "numpy": "2.4.6",
+          "pdqhash": "0.2.8",
+          "av": "16.1.0",
+          "pyarrow": "23.0.1",
+          "pypdfium2": "5.14.0",
+          "warcio": "1.8.1"
+        }
+      },
+      "coverage_note": "Counts include every discovered source in this shard; cache hits re-read source bytes.",
+      "workers": 1,
+      "parallel_efficiency": 1.0
+    },
+    {
+      "dataset_id": "26d1b0d1-54e0-4ad9-9431-d487d93f8d4a",
+      "counts": {
+        "discovered": 44,
+        "processed": 42,
+        "logical_items": 45,
+        "partial": 2
+      },
+      "metrics": {
+        "input_bytes": 11689624,
+        "fingerprint_bytes": 909162,
+        "cpu_seconds": 0.9848920000000001,
+        "peak_worker_rss_bytes": 97550336,
+        "storage_requests": 0,
+        "retries": 0,
+        "media_seconds": 40.0,
+        "worker_cpu_seconds": 0.5981170000000001,
+        "parent_cpu_seconds": 0.3867749999999999,
+        "elapsed_seconds": 0.7237602080003853,
+        "input_gb_per_second": 0.01615123886445243,
+        "items_per_second": 60.793615777197545,
+        "media_hours_per_compute_hour": 40.61359011952579,
+        "estimated_cost_per_tb": null
+      },
+      "provenance": {
+        "sdk": "0.1.0",
+        "dependencies": {
+          "Pillow": "12.3.0",
+          "numpy": "2.4.6",
+          "pdqhash": "0.2.8",
+          "av": "16.1.0",
+          "pyarrow": "23.0.1",
+          "pypdfium2": "5.14.0",
+          "warcio": "1.8.1"
+        }
+      },
+      "coverage_note": "Counts include every discovered source in this shard; cache hits re-read source bytes.",
+      "workers": 2,
+      "parallel_efficiency": 0.6009416104842985
+    },
+    {
+      "dataset_id": "d20de1f4-e050-41f8-afb2-5120a2d0adc3",
+      "counts": {
+        "discovered": 44,
+        "processed": 42,
+        "logical_items": 45,
+        "partial": 2
+      },
+      "metrics": {
+        "input_bytes": 11689624,
+        "fingerprint_bytes": 909162,
+        "cpu_seconds": 1.0917540000000001,
+        "peak_worker_rss_bytes": 99500032,
+        "storage_requests": 0,
+        "retries": 0,
+        "media_seconds": 40.0,
+        "worker_cpu_seconds": 0.697207,
+        "parent_cpu_seconds": 0.39454700000000004,
+        "elapsed_seconds": 0.6937138339999365,
+        "input_gb_per_second": 0.01685078691972729,
+        "items_per_second": 63.4267299331442,
+        "media_hours_per_compute_hour": 36.638290310820935,
+        "estimated_cost_per_tb": null
+      },
+      "provenance": {
+        "sdk": "0.1.0",
+        "dependencies": {
+          "Pillow": "12.3.0",
+          "numpy": "2.4.6",
+          "pdqhash": "0.2.8",
+          "av": "16.1.0",
+          "pyarrow": "23.0.1",
+          "pypdfium2": "5.14.0",
+          "warcio": "1.8.1"
+        }
+      },
+      "coverage_note": "Counts include every discovered source in this shard; cache hits re-read source bytes.",
+      "workers": 4,
+      "parallel_efficiency": 0.3134849008937612
+    },
+    {
+      "dataset_id": "62e766d6-8837-4ff4-933e-590d29769b21",
+      "counts": {
+        "discovered": 44,
+        "processed": 42,
+        "logical_items": 45,
+        "partial": 2
+      },
+      "metrics": {
+        "input_bytes": 11689624,
+        "fingerprint_bytes": 909162,
+        "cpu_seconds": 1.4053849999999999,
+        "peak_worker_rss_bytes": 95223808,
+        "storage_requests": 0,
+        "retries": 0,
+        "media_seconds": 40.0,
+        "worker_cpu_seconds": 0.991904,
+        "parent_cpu_seconds": 0.413481,
+        "elapsed_seconds": 0.7008741660010855,
+        "input_gb_per_second": 0.016678634435474248,
+        "items_per_second": 62.7787442231561,
+        "media_hours_per_compute_hour": 28.46195170718344,
+        "estimated_cost_per_tb": null
+      },
+      "provenance": {
+        "sdk": "0.1.0",
+        "dependencies": {
+          "Pillow": "12.3.0",
+          "numpy": "2.4.6",
+          "pdqhash": "0.2.8",
+          "av": "16.1.0",
+          "pyarrow": "23.0.1",
+          "pypdfium2": "5.14.0",
+          "warcio": "1.8.1"
+        }
+      },
+      "coverage_note": "Counts include every discovered source in this shard; cache hits re-read source bytes.",
+      "workers": 8,
+      "parallel_efficiency": 0.1551411245051971
+    }
+  ],
+  "projection": null,
+  "release_gates": {
+    "one_tb_measured": false,
+    "representative_multimodal_pilot": false,
+    "eight_node_scaling": false,
+    "accuracy_calibration": false
+  },
+  "boundaries": [
+    "No detected overlap applies only to the checked registry, profiles, and snapshot; it does not establish global exclusivity.",
+    "Submission and contributor assertions do not prove training use, ownership, or licensing rights.",
+    "Fingerprints can disclose membership and similarity information; keeping content local is not a secrecy guarantee."
+  ],
+  "workload": {
+    "kind": "synthetic_smoke",
+    "seed": 20261028,
+    "files": 44,
+    "note": "Small OS-cache-warm workload including process startup; not representative pilot evidence."
+  },
+  "host": {
+    "machine": "arm64",
+    "os": "Darwin",
+    "python": "3.11.14"
+  }
+}

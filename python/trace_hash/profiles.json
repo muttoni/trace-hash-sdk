@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matching_policy": "trace.conservative.v0",
+  "fuzzy_release_status": "experimental",
+  "production_reportable_match_classes": ["byte_exact"],
+  "profiles": [
+    {"id": "trace.text.nfc-minhash128-winnow32.v0", "status": "experimental", "minimum_units": 36},
+    {"id": "trace.code.nfc-minhash128-winnow32.v0", "status": "experimental", "minimum_units": 36},
+    {"id": "trace.image.pdq256-white-exif.v0", "status": "experimental", "runtime_suffix_required": true},
+    {"id": "trace.image.pdq-regions10-white-exif.v0", "status": "experimental", "runtime_suffix_required": true},
+    {"id": "trace.audio.landmarks-11025-2048-512.v0", "status": "experimental", "runtime_suffix_required": true},
+    {"id": "trace.video.pdq-1fps.v0", "status": "experimental", "runtime_suffix_required": true}
+  ]
+}

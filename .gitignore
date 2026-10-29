@@ -1,0 +1,17 @@
+.venv/
+target/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.sqlite*
+*.local.jsonl
+*.partial
+*.so
+*.dylib
+.DS_Store
+.env
+.env.*
+!.env.example
+

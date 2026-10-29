@@ -1,0 +1,10 @@
+.venv
+target
+.git
+dist
+**/__pycache__
+**/*.so
+**/*.sqlite*
+**/*.local.jsonl
+.pytest_cache
+.ruff_cache

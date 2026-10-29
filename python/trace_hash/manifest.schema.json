@@ -1,0 +1,515 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+    },
+    "item_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+    },
+    "parent_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "unit": {
+      "enum": [
+        "file",
+        "record",
+        "segment"
+      ]
+    },
+    "position": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "modality": {
+      "enum": [
+        "binary",
+        "text",
+        "code",
+        "image",
+        "audio",
+        "video",
+        "record",
+        "document",
+        "container"
+      ]
+    },
+    "byte_length": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "exact_digest": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "exact_algorithm": {
+      "const": "blake3-256"
+    },
+    "exact_basis": {
+      "enum": [
+        "raw_bytes",
+        "canonical_record",
+        "derived_content"
+      ]
+    },
+    "status": {
+      "enum": [
+        "processed",
+        "partial",
+        "unsupported",
+        "failed"
+      ]
+    },
+    "coverage": {
+      "enum": [
+        "complete",
+        "partial",
+        "none"
+      ]
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "field_mapping_required",
+          "invalid_record",
+          "input_size_limit",
+          "record_size_limit",
+          "expansion_limit",
+          "record_limit",
+          "depth_limit",
+          "page_limit",
+          "pixel_limit",
+          "duration_limit",
+          "feature_limit",
+          "manifest_size_limit",
+          "spool_size_limit",
+          "multi_frame_image",
+          "sampled_video",
+          "fuzzy_unsupported",
+          "optional_dependency_missing",
+          "decode_failed",
+          "source_changed",
+          "source_read_failed",
+          "worker_terminated",
+          "symlink_skipped",
+          "non_regular_entry_skipped",
+          "document_extraction_experimental",
+          "document_coverage_limited",
+          "ocr_not_performed",
+          "child_coverage_incomplete"
+        ]
+      },
+      "maxItems": 32
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "text"
+              },
+              "profile": {
+                "type": "string",
+                "pattern": "^trace\\.[a-zA-Z0-9.+_-]+$",
+                "maxLength": 200
+              },
+              "experimental": {
+                "const": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "canonical_digest": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "minhash": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{16}$"
+                    },
+                    "maxItems": 128
+                  },
+                  "anchors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{16}$"
+                        },
+                        "position": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "hash",
+                        "position"
+                      ]
+                    },
+                    "maxItems": 500000
+                  },
+                  "units": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "distinct_shingles": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "low_information": {
+                    "type": "boolean"
+                  },
+                  "truncated": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "canonical_digest",
+                  "minhash",
+                  "anchors",
+                  "units",
+                  "distinct_shingles",
+                  "low_information",
+                  "truncated"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "profile",
+              "experimental",
+              "payload"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "image"
+              },
+              "profile": {
+                "type": "string",
+                "pattern": "^trace\\.[a-zA-Z0-9.+_-]+$",
+                "maxLength": 200
+              },
+              "experimental": {
+                "const": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "hash": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "quality": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "width": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "height": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "low_information": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "hash",
+                  "quality",
+                  "width",
+                  "height",
+                  "low_information"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "profile",
+              "experimental",
+              "payload"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "image_regions"
+              },
+              "profile": {
+                "type": "string",
+                "pattern": "^trace\\.[a-zA-Z0-9.+_-]+$",
+                "maxLength": 200
+              },
+              "experimental": {
+                "const": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "regions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "quality": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 100
+                        },
+                        "box": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "minItems": 4,
+                          "maxItems": 4
+                        }
+                      },
+                      "required": [
+                        "hash",
+                        "quality",
+                        "box"
+                      ]
+                    },
+                    "maxItems": 10
+                  }
+                },
+                "required": [
+                  "regions"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "profile",
+              "experimental",
+              "payload"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "audio"
+              },
+              "profile": {
+                "type": "string",
+                "pattern": "^trace\\.[a-zA-Z0-9.+_-]+$",
+                "maxLength": 200
+              },
+              "experimental": {
+                "const": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "landmarks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{16}$"
+                        },
+                        "position": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "hash",
+                        "position"
+                      ]
+                    },
+                    "maxItems": 500000
+                  },
+                  "samples": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "sample_rate": {
+                    "const": 11025
+                  },
+                  "hop": {
+                    "const": 512
+                  },
+                  "low_information": {
+                    "type": "boolean"
+                  },
+                  "truncated": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "landmarks",
+                  "samples",
+                  "sample_rate",
+                  "hop",
+                  "low_information",
+                  "truncated"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "profile",
+              "experimental",
+              "payload"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "video"
+              },
+              "profile": {
+                "type": "string",
+                "pattern": "^trace\\.[a-zA-Z0-9.+_-]+$",
+                "maxLength": 200
+              },
+              "experimental": {
+                "const": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "frames": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "hash": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "quality": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 100
+                        },
+                        "time_ms": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "hash",
+                        "quality",
+                        "time_ms"
+                      ]
+                    },
+                    "maxItems": 500000
+                  },
+                  "sample_period_ms": {
+                    "const": 1000
+                  },
+                  "low_information": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "frames",
+                  "sample_period_ms",
+                  "low_information"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "profile",
+              "experimental",
+              "payload"
+            ]
+          }
+        ]
+      },
+      "maxItems": 128
+    },
+    "implementation": {
+      "const": "trace-hash-sdk/0.1.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "item_id",
+    "parent_id",
+    "unit",
+    "position",
+    "modality",
+    "byte_length",
+    "exact_digest",
+    "exact_algorithm",
+    "exact_basis",
+    "status",
+    "coverage",
+    "issues",
+    "features",
+    "implementation"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:trace:manifest:1.0"
+}

@@ -1,0 +1,24 @@
+Trace Hashing SDK
+Copyright 2026 Trace Hashing SDK contributors
+
+New code in this repository is licensed under Apache License 2.0.
+Dependencies retain their own licenses; this notice does not relicense them.
+
+The native core uses BLAKE3 (Apache-2.0/CC0 alternatives), RustFFT
+(MIT/Apache-2.0), Unicode normalization/segmentation and the serde/PyO3 ecosystems.
+See Cargo.lock and the generated dependency inventory for exact versions.
+
+Optional image fingerprints use pdqhash-python, whose bindings are MIT licensed,
+with the separately licensed PDQ implementation from Meta ThreatExchange.
+Retain the upstream copyright and license notices when redistributing that code.
+
+Optional media decoding uses PyAV/FFmpeg, Pillow and NumPy. The licensing of
+bundled FFmpeg libraries and enabled codecs depends on the distributed builds;
+release approval requires reviewing the actual wheels/container artifacts.
+Optional PDF support uses pypdfium2/PDFium, not PyMuPDF. PDFium contains its own
+third-party notices. Arrow, boto3, warcio, httpx, jsonschema and defusedxml also
+retain their respective licenses.
+
+This project does not bundle training datasets or assert rights to any input
+content. Generated test fixtures are synthetic. Third-party algorithm names
+identify their upstream implementations and do not imply endorsement.

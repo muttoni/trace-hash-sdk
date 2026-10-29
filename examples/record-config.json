@@ -1,0 +1,4 @@
+{
+  "fields": {"/text": "text"},
+  "limits": {"max_record_bytes": 8388608, "timeout_seconds": 600}
+}
